@@ -142,3 +142,42 @@
     color: var(--color-foreground);
   }
 }
+
+/* ---- Shammah Innovation Holdings brand system ---- */
+:root {
+  --background: oklch(0.985 0.003 250);
+  --foreground: oklch(0.22 0.05 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.05 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.05 260);
+  --primary: oklch(0.26 0.07 262);
+  --primary-foreground: oklch(0.985 0.005 250);
+  --secondary: oklch(0.95 0.012 255);
+  --secondary-foreground: oklch(0.26 0.07 262);
+  --muted: oklch(0.955 0.008 255);
+  --muted-foreground: oklch(0.5 0.03 258);
+  --accent: oklch(0.76 0.12 84);
+  --accent-foreground: oklch(0.22 0.05 260);
+  --border: oklch(0.9 0.012 255);
+  --input: oklch(0.9 0.012 255);
+  --ring: oklch(0.76 0.12 84);
+  --radius: 0.25rem;
+  --navy: oklch(0.24 0.065 262);
+  --navy-deep: oklch(0.19 0.055 262);
+  --gold: oklch(0.76 0.12 84);
+  --gold-soft: oklch(0.86 0.09 88);
+}
+
+@theme inline {
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --font-display: "Barlow Condensed", "Barlow", sans-serif;
+  --font-sans: "Barlow", ui-sans-serif, system-ui, sans-serif;
+}
+
+.clip-angle {
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+}
