@@ -1,17 +1,28 @@
 import { Outlet, createFileRoute, redirect, Link, useNavigate } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, Images, Newspaper, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, Images, Newspaper, Settings, Inbox, LogOut } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/admin")({
   beforeLoad: async () => {
-    const { data: { session } } = await supabase.auth.getSession();
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
     if (!session) {
       throw redirect({
         to: "/login",
       });
+    }
+
+    const { data: roles, error } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", session.user.id);
+
+    if (error || !roles?.some(({ role }) => role === "admin" || role === "editor")) {
+      throw redirect({ to: "/" });
     }
   },
   component: AdminLayout,
@@ -28,6 +39,7 @@ function AdminLayout() {
 
   const navItems = [
     { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
+    { name: "Enquiries", href: "/admin/enquiries", icon: Inbox },
     { name: "Gallery", href: "/admin/gallery", icon: Images },
     { name: "News", href: "/admin/news", icon: Newspaper },
     { name: "Services", href: "/admin/services", icon: Settings },
@@ -36,7 +48,7 @@ function AdminLayout() {
   return (
     <div className="flex min-h-screen bg-muted/40">
       {/* Sidebar */}
-      <aside className="fixed inset-y-0 left-0 z-10 flex w-64 flex-col border-r bg-background">
+      <aside className="fixed inset-y-0 left-0 z-10 hidden w-64 flex-col border-r bg-background md:flex">
         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
           <Link to="/" className="flex items-center gap-2 font-semibold">
             <span className="text-navy">Shammah Admin</span>
@@ -65,7 +77,7 @@ function AdminLayout() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex flex-1 flex-col pl-64">
+      <main className="flex flex-1 flex-col md:pl-64">
         <div className="flex-1 p-4 lg:p-6">
           <Outlet />
         </div>
