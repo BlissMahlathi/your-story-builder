@@ -11,7 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { createPageHead, SEO_IMAGE } from "../lib/seo";
+import { createPageHead, getCanonicalUrl, SEO_IMAGE } from "../lib/seo";
 
 const rootHead = createPageHead({
   title: "Shammah Innovation Holdings | Integrated Infrastructure & Engineering",
@@ -25,9 +25,9 @@ const organizationSchema = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "/#organization",
+      "@id": `${getCanonicalUrl("/")}#organization`,
       name: "Shammah Innovation Holdings",
-      url: "/",
+      url: getCanonicalUrl("/"),
       logo: SEO_IMAGE,
       telephone: "+27 65 592 2639",
       email: "shammahinnovation@gmail.com",
@@ -41,10 +41,10 @@ const organizationSchema = {
     },
     {
       "@type": "WebSite",
-      "@id": "/#website",
+      "@id": `${getCanonicalUrl("/")}#website`,
       name: "Shammah Innovation Holdings",
-      url: "/",
-      publisher: { "@id": "/#organization" },
+      url: getCanonicalUrl("/"),
+      publisher: { "@id": `${getCanonicalUrl("/")}#organization` },
     },
   ],
 };
