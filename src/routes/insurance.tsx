@@ -110,7 +110,7 @@ function InsurancePage() {
       />
 
       {/* Eyer / Eyee intro */}
-      <section className="bg-navy text-primary-foreground">
+      <section className="bg-navy text-primary-foreground max-sm:mt--6">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 py-12 md:grid-cols-2">
           <div className="border border-gold/30 p-8">
             <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-gold">Eyer</p>
@@ -118,7 +118,8 @@ function InsurancePage() {
               The Company
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-primary-foreground/75">
-              COIDA Letter of Good Standing, Contractor All-Risk, Public Liability and Asset Cover — everything your business needs for tenders and site operations.
+              COIDA Letter of Good Standing, Contractor All-Risk, Public Liability and Asset Cover —
+              everything your business needs for tenders and site operations.
             </p>
           </div>
           <div className="border border-gold/30 p-8">
@@ -127,7 +128,8 @@ function InsurancePage() {
               The Worker
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-primary-foreground/75">
-              Group Life, Funeral, Personal Accident and Medical cover — keeping your workforce protected on site and off duty.
+              Group Life, Funeral, Personal Accident and Medical cover — keeping your workforce
+              protected on site and off duty.
             </p>
           </div>
         </div>
@@ -139,7 +141,9 @@ function InsurancePage() {
           <div className="mx-auto max-w-7xl px-4">
             <div className="flex items-start gap-4 border-l-4 border-gold pl-4">
               <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-gold">{section.label}</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-gold">
+                  {section.label}
+                </p>
                 <h2 className="mt-1 font-display text-2xl font-bold uppercase tracking-tight text-navy">
                   {section.title}
                 </h2>
@@ -166,7 +170,8 @@ function InsurancePage() {
             Get your compliance file in order
           </h2>
           <p className="max-w-xl text-sm text-primary-foreground/75">
-            Whether you need a COIDA Letter of Good Standing for a tender or group life cover for 50 site workers, our team handles it end-to-end. Contact {COMPANY.name} today.
+            Whether you need a COIDA Letter of Good Standing for a tender or group life cover for 50
+            site workers, our team handles it end-to-end. Contact {COMPANY.name} today.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
