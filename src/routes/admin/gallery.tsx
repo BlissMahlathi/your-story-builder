@@ -43,9 +43,21 @@ function AdminGallery() {
 
   const uploadMutation = useMutation({
     mutationFn: async (uploadFile: File) => {
-      const fileExt = uploadFile.name.split('.').pop();
-      const fileName = `${Math.random().toString(36).substring(2, 15)}.${fileExt}`;
-      const { error } = await supabase.storage.from("gallary").upload(fileName, uploadFile);
+      if (!uploadFile.type.startsWith("image/")) {
+        throw new Error("Please choose an image file.");
+      }
+
+      if (uploadFile.size > 10 * 1024 * 1024) {
+        throw new Error("Images must be smaller than 10 MB.");
+      }
+
+      const fileExt = uploadFile.name.split(".").pop()?.toLowerCase() || "jpg";
+      const fileName = `${crypto.randomUUID()}.${fileExt}`;
+      const { error } = await supabase.storage.from("gallary").upload(fileName, uploadFile, {
+        cacheControl: "3600",
+        upsert: false,
+        contentType: uploadFile.type,
+      });
       if (error) throw error;
     },
     onSuccess: () => {
@@ -83,15 +95,19 @@ function AdminGallery() {
           <form onSubmit={handleUpload} className="flex flex-col sm:flex-row items-end gap-4">
             <div className="grid w-full max-w-sm items-center gap-1.5">
               <Label htmlFor="picture">Picture</Label>
-              <Input 
-                id="picture" 
-                type="file" 
+              <Input
+                id="picture"
+                type="file"
                 accept="image/*"
                 onChange={(e) => setFile(e.target.files?.[0] || null)}
                 required
               />
             </div>
-            <Button type="submit" disabled={!file || uploading} className="bg-navy hover:bg-navy/90 text-white">
+            <Button
+              type="submit"
+              disabled={!file || uploading}
+              className="bg-navy hover:bg-navy/90 text-white"
+            >
               <Upload className="mr-2 h-4 w-4" />
               {uploading ? "Uploading..." : "Upload Image"}
             </Button>
@@ -102,32 +118,30 @@ function AdminGallery() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {gallery.isLoading ? (
           <p className="text-sm text-muted-foreground">Loading gallery...</p>
-        ) : gallery.data?.map((item) => (
-          <div key={item.id} className="relative group rounded-md overflow-hidden border bg-card">
-            <div className="aspect-square">
-              <img 
-                src={item.image_url} 
-                alt={item.title} 
-                className="w-full h-full object-cover"
-              />
+        ) : (
+          gallery.data?.map((item) => (
+            <div key={item.id} className="relative group rounded-md overflow-hidden border bg-card">
+              <div className="aspect-square">
+                <img src={item.image_url} alt={item.title} className="w-full h-full object-cover" />
+              </div>
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-between p-4">
+                <p className="text-white text-xs font-medium truncate">{item.title}</p>
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  onClick={() => {
+                    if (confirm("Are you sure you want to delete this image?")) {
+                      deleteMutation.mutate(item.id);
+                    }
+                  }}
+                >
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Delete
+                </Button>
+              </div>
             </div>
-            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-between p-4">
-              <p className="text-white text-xs font-medium truncate">{item.title}</p>
-              <Button 
-                variant="destructive" 
-                size="sm"
-                onClick={() => {
-                  if (confirm("Are you sure you want to delete this image?")) {
-                    deleteMutation.mutate(item.id);
-                  }
-                }}
-              >
-                <Trash2 className="h-4 w-4 mr-2" />
-                Delete
-              </Button>
-            </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
