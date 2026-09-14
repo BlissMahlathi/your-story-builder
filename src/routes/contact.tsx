@@ -16,7 +16,10 @@ export const Route = createFileRoute("/contact")({
           "Get in touch with Shammah Innovation Holdings by phone, email or WhatsApp, or send us a message using the contact form.",
       },
       { property: "og:title", content: "Contact Shammah Innovation Holdings" },
-      { property: "og:description", content: "Phone, email, WhatsApp and office details, plus a direct message form." },
+      {
+        property: "og:description",
+        content: "Phone, email, WhatsApp and office details, plus a direct message form.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -66,7 +69,9 @@ function ContactPage() {
       <section className="bg-background py-14">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-[1.2fr_1fr]">
           <div className="border border-border bg-card p-6 shadow-sm md:p-8">
-            <h2 className="font-display text-xl font-bold uppercase tracking-tight text-navy">Send us a message</h2>
+            <h2 className="font-display text-xl font-bold uppercase tracking-tight text-navy">
+              Send us a message
+            </h2>
             {sent ? (
               <p className="mt-3 border-l-4 border-gold bg-muted p-4 text-sm text-foreground/80">
                 Your message is with our team. We will be in touch shortly.
@@ -81,7 +86,10 @@ function ContactPage() {
                 <Field label="Subject" name="subject" required />
               </div>
               <div className="sm:col-span-2">
-                <label htmlFor="message" className="text-xs font-semibold uppercase tracking-wide text-navy">
+                <label
+                  htmlFor="message"
+                  className="text-xs font-semibold uppercase tracking-wide text-navy"
+                >
                   Message
                 </label>
                 <textarea
@@ -106,7 +114,9 @@ function ContactPage() {
 
           <div className="space-y-6">
             <div className="bg-navy p-6 text-primary-foreground">
-              <h2 className="font-display text-lg font-bold uppercase tracking-tight">Company details</h2>
+              <h2 className="font-display text-lg font-bold uppercase tracking-tight">
+                Company details
+              </h2>
               <ul className="mt-5 space-y-4 text-sm">
                 <li className="flex gap-3">
                   <Phone className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden="true" />
@@ -145,9 +155,12 @@ function ContactPage() {
             </a>
 
             <div className="border border-border bg-card p-6">
-              <h2 className="font-display text-sm font-semibold uppercase tracking-wide text-navy">Where we operate</h2>
+              <h2 className="font-display text-sm font-semibold uppercase tracking-wide text-navy">
+                Where we operate
+              </h2>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Head office in {COMPANY.address}. Project teams deploy nationally across all nine provinces.
+                Head office in {COMPANY.address}. Project teams deploy nationally across all nine
+                provinces.
               </p>
             </div>
           </div>

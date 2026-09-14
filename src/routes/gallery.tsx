@@ -52,7 +52,9 @@ function GalleryPage() {
                 onClick={() => setCategory(null)}
                 className={cn(
                   "px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-colors",
-                  category === null ? "bg-navy text-primary-foreground" : "bg-muted text-navy hover:bg-gold-soft",
+                  category === null
+                    ? "bg-navy text-primary-foreground"
+                    : "bg-muted text-navy hover:bg-gold-soft",
                 )}
               >
                 All
@@ -64,7 +66,9 @@ function GalleryPage() {
                   onClick={() => setCategory(item)}
                   className={cn(
                     "px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-colors",
-                    category === item ? "bg-navy text-primary-foreground" : "bg-muted text-navy hover:bg-gold-soft",
+                    category === item
+                      ? "bg-navy text-primary-foreground"
+                      : "bg-muted text-navy hover:bg-gold-soft",
                   )}
                 >
                   {item}
@@ -73,7 +77,9 @@ function GalleryPage() {
             </div>
           ) : null}
 
-          {gallery.isLoading ? <p className="mt-10 text-sm text-muted-foreground">Loading gallery…</p> : null}
+          {gallery.isLoading ? (
+            <p className="mt-10 text-sm text-muted-foreground">Loading gallery…</p>
+          ) : null}
 
           {!gallery.isLoading && items.length === 0 ? (
             <p className="mt-10 text-sm text-muted-foreground">
@@ -93,12 +99,16 @@ function GalleryPage() {
                   />
                 </div>
                 <figcaption className="p-5">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">{item.category}</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
+                    {item.category}
+                  </p>
                   <h2 className="mt-1 font-display text-base font-semibold uppercase tracking-wide text-navy">
                     {item.title}
                   </h2>
                   {item.description ? (
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {item.description}
+                    </p>
                   ) : null}
                 </figcaption>
               </figure>

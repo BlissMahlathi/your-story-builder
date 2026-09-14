@@ -112,13 +112,48 @@ export const postsQuery = queryOptions({
 export const galleryQuery = queryOptions({
   queryKey: ["gallery"],
   queryFn: async (): Promise<GalleryItem[]> => {
-    const { data, error } = await supabase
+    // 1. Fetch from database table
+    const { data: dbData, error: dbError } = await supabase
       .from("gallery_items")
       .select("id, title, description, category, image_url, alt_text, project_date")
       .eq("status", "published")
       .order("sort_order");
-    if (error) throw error;
-    return data ?? [];
+
+    if (dbError && dbError.code !== "42P01") {
+      console.error("Database gallery error:", dbError);
+    }
+
+    let items: GalleryItem[] = dbData ?? [];
+
+    // 2. Fetch from 'gallary' storage bucket
+    try {
+      const { data: files, error: filesError } = await supabase.storage.from("gallary").list();
+
+      if (!filesError && files) {
+        const storageItems = files
+          .filter((f) => f.name !== ".emptyFolderPlaceholder" && f.id)
+          .map((file) => {
+            const { data } = supabase.storage.from("gallary").getPublicUrl(file.name);
+            return {
+              id: file.id || `storage-${file.name}`,
+              title: file.name.replace(/\.[^/.]+$/, ""), // Remove extension
+              description: "Uploaded via Storage",
+              category: "Gallary Storage",
+              image_url: data.publicUrl,
+              alt_text: file.name,
+              project_date: file.created_at || null,
+            };
+          });
+
+        items = [...items, ...storageItems];
+      } else if (filesError) {
+        console.error("Storage gallery error:", filesError);
+      }
+    } catch (e) {
+      console.error("Error fetching from storage:", e);
+    }
+
+    return items;
   },
 });
 

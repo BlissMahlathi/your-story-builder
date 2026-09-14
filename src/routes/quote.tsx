@@ -17,7 +17,10 @@ export const Route = createFileRoute("/quote")({
           "Request a detailed quotation for construction, engineering, IT, agriculture, occupational health, logistics or compliance services.",
       },
       { property: "og:title", content: "Get a Quote | Shammah Innovation Holdings" },
-      { property: "og:description", content: "Send us your requirements and receive a tailored quotation." },
+      {
+        property: "og:description",
+        content: "Send us your requirements and receive a tailored quotation.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -27,7 +30,10 @@ export const Route = createFileRoute("/quote")({
 
 const STEPS = [
   { title: "Submit your request", text: "Share your scope, quantities, location and timeline." },
-  { title: "Technical review", text: "The relevant division reviews the requirement and clarifies details." },
+  {
+    title: "Technical review",
+    text: "The relevant division reviews the requirement and clarifies details.",
+  },
   { title: "Costed proposal", text: "You receive an itemised quotation with lead times." },
   { title: "Delivery", text: "On approval we mobilise and report progress throughout." },
 ];
@@ -85,7 +91,9 @@ function QuotePage() {
       <section className="bg-background py-14">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-[1.2fr_1fr]">
           <div className="border border-border bg-card p-6 shadow-sm md:p-8">
-            <h2 className="font-display text-xl font-bold uppercase tracking-tight text-navy">Quote request</h2>
+            <h2 className="font-display text-xl font-bold uppercase tracking-tight text-navy">
+              Quote request
+            </h2>
             {sent ? (
               <p className="mt-3 border-l-4 border-gold bg-muted p-4 text-sm text-foreground/80">
                 Your request has been logged. Our team will contact you with a proposal.
@@ -97,7 +105,10 @@ function QuotePage() {
               <Field label="Email address" name="email" type="email" required />
               <Field label="Phone number" name="phone" required />
               <div className="sm:col-span-2">
-                <label htmlFor="service_requested" className="text-xs font-semibold uppercase tracking-wide text-navy">
+                <label
+                  htmlFor="service_requested"
+                  className="text-xs font-semibold uppercase tracking-wide text-navy"
+                >
                   Service required
                 </label>
                 <select
@@ -124,7 +135,10 @@ function QuotePage() {
               <Field label="Required timeline" name="timeline" />
               <Field label="Site location" name="location" />
               <div className="sm:col-span-2">
-                <label htmlFor="message" className="text-xs font-semibold uppercase tracking-wide text-navy">
+                <label
+                  htmlFor="message"
+                  className="text-xs font-semibold uppercase tracking-wide text-navy"
+                >
                   Project details
                 </label>
                 <textarea
@@ -149,7 +163,9 @@ function QuotePage() {
 
           <div className="space-y-6">
             <div className="bg-navy p-6 text-primary-foreground">
-              <h2 className="font-display text-lg font-bold uppercase tracking-tight">How it works</h2>
+              <h2 className="font-display text-lg font-bold uppercase tracking-tight">
+                How it works
+              </h2>
               <ol className="mt-5 space-y-5">
                 {STEPS.map((step, index) => (
                   <li key={step.title} className="flex gap-4">
@@ -157,7 +173,9 @@ function QuotePage() {
                       {index + 1}
                     </span>
                     <div>
-                      <p className="font-display text-sm font-semibold uppercase tracking-wide">{step.title}</p>
+                      <p className="font-display text-sm font-semibold uppercase tracking-wide">
+                        {step.title}
+                      </p>
                       <p className="mt-1 text-sm text-primary-foreground/75">{step.text}</p>
                     </div>
                   </li>

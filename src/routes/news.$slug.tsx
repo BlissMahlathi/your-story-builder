@@ -29,7 +29,9 @@ function ArticlePage() {
   if (posts.isLoading) {
     return (
       <SiteLayout>
-        <div className="mx-auto max-w-3xl px-4 py-20 text-sm text-muted-foreground">Loading article…</div>
+        <div className="mx-auto max-w-3xl px-4 py-20 text-sm text-muted-foreground">
+          Loading article…
+        </div>
       </SiteLayout>
     );
   }
@@ -39,7 +41,10 @@ function ArticlePage() {
       <SiteLayout>
         <PageHero eyebrow="News" title="Article not found" breadcrumb="News & Blog" />
         <div className="mx-auto max-w-3xl px-4 py-16">
-          <Link to="/news" className="inline-flex items-center gap-2 text-sm font-semibold uppercase text-navy hover:text-gold">
+          <Link
+            to="/news"
+            className="inline-flex items-center gap-2 text-sm font-semibold uppercase text-navy hover:text-gold"
+          >
             <ArrowLeft className="size-4" aria-hidden="true" /> Back to all articles
           </Link>
         </div>
@@ -57,7 +62,11 @@ function ArticlePage() {
           <div className="flex flex-wrap items-center gap-5 text-xs uppercase tracking-wide text-muted-foreground">
             <span className="flex items-center gap-2">
               <CalendarDays className="size-3.5" aria-hidden="true" />
-              {new Date(date).toLocaleDateString("en-ZA", { year: "numeric", month: "long", day: "numeric" })}
+              {new Date(date).toLocaleDateString("en-ZA", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
             </span>
             <span className="flex items-center gap-2">
               <User className="size-3.5" aria-hidden="true" />
@@ -66,7 +75,12 @@ function ArticlePage() {
           </div>
 
           {post.cover_url ? (
-            <img src={post.cover_url} alt={post.title} className="mt-6 w-full object-cover" loading="lazy" />
+            <img
+              src={post.cover_url}
+              alt={post.title}
+              className="mt-6 w-full object-cover"
+              loading="lazy"
+            />
           ) : null}
 
           {post.excerpt ? (

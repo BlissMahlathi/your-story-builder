@@ -87,7 +87,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Shammah Innovation Holdings" },
       {
         property: "og:description",
-        content: "Integrated infrastructure, engineering and operational services for complex projects.",
+        content:
+          "Integrated infrastructure, engineering and operational services for complex projects.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

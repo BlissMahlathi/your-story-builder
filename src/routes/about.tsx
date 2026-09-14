@@ -16,7 +16,8 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: "About Shammah Innovation Holdings" },
       {
         property: "og:description",
-        content: "A registered South African group delivering integrated infrastructure and engineering services.",
+        content:
+          "A registered South African group delivering integrated infrastructure and engineering services.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -44,10 +45,26 @@ const PILLARS = [
 ];
 
 const APPROACH = [
-  { step: "01", title: "Understand", body: "We start with the operational problem, site conditions and compliance requirements." },
-  { step: "02", title: "Plan", body: "Scope, programme, resourcing and costing are documented before work begins." },
-  { step: "03", title: "Deliver", body: "Qualified teams execute with supervision, safety controls and quality checks." },
-  { step: "04", title: "Support", body: "Handover documentation, maintenance and ongoing advisory keep assets performing." },
+  {
+    step: "01",
+    title: "Understand",
+    body: "We start with the operational problem, site conditions and compliance requirements.",
+  },
+  {
+    step: "02",
+    title: "Plan",
+    body: "Scope, programme, resourcing and costing are documented before work begins.",
+  },
+  {
+    step: "03",
+    title: "Deliver",
+    body: "Qualified teams execute with supervision, safety controls and quality checks.",
+  },
+  {
+    step: "04",
+    title: "Support",
+    body: "Handover documentation, maintenance and ongoing advisory keep assets performing.",
+  },
 ];
 
 function About() {
@@ -73,9 +90,9 @@ function About() {
           <SectionHeading eyebrow="Our story" title="One company, seven specialist divisions" />
           <div className="mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground">
             <p>
-              {COMPANY.name} (Reg. No. {COMPANY.registration}) is a South African company that brings
-              construction, engineering, technology, agriculture, occupational health, logistics and
-              compliance capability under one accountable structure.
+              {COMPANY.name} (Reg. No. {COMPANY.registration}) is a South African company that
+              brings construction, engineering, technology, agriculture, occupational health,
+              logistics and compliance capability under one accountable structure.
             </p>
             <p>
               Clients appoint us because coordinating multiple suppliers on a single project creates

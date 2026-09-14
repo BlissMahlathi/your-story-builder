@@ -88,26 +88,28 @@ function Home() {
               Infrastructure that moves business forward
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/80 md:text-lg">
-              One accountable partner for construction, engineering, technology, agriculture, health, logistics and
-              compliance across South Africa.
+              One accountable partner for construction, engineering, technology, agriculture,
+              health, logistics and compliance across South Africa.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
-            <Link
-              to="/quote"
-              className="inline-flex items-center gap-2 bg-gold px-7 py-3.5 text-sm font-semibold uppercase tracking-wide text-navy-deep transition-colors hover:bg-gold-soft"
-            >
-              Request a Quote <ArrowRight className="size-4" aria-hidden="true" />
-            </Link>
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-2 border border-white/30 px-7 py-3.5 text-sm font-semibold uppercase tracking-wide text-primary-foreground transition-colors hover:border-gold hover:text-gold"
-            >
-              Explore Services
-            </Link>
+              <Link
+                to="/quote"
+                className="inline-flex items-center gap-2 bg-gold px-7 py-3.5 text-sm font-semibold uppercase tracking-wide text-navy-deep transition-colors hover:bg-gold-soft"
+              >
+                Request a Quote <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+              <Link
+                to="/services"
+                className="inline-flex items-center gap-2 border border-white/30 px-7 py-3.5 text-sm font-semibold uppercase tracking-wide text-primary-foreground transition-colors hover:border-gold hover:text-gold"
+              >
+                Explore Services
+              </Link>
             </div>
           </div>
           <div className="hidden border-l border-gold/60 pl-6 lg:block">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-gold">Built for</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-gold">
+              Built for
+            </p>
             <p className="mt-3 font-display text-2xl font-semibold uppercase leading-tight text-primary-foreground">
               Complex operations
             </p>
@@ -123,7 +125,9 @@ function Home() {
           {STATS.map((stat) => (
             <div key={stat.label} className="border-l-2 border-gold pl-4">
               <p className="font-display text-3xl font-bold text-gold md:text-4xl">{stat.value}</p>
-              <p className="mt-1 text-xs uppercase tracking-wide text-primary-foreground/70">{stat.label}</p>
+              <p className="mt-1 text-xs uppercase tracking-wide text-primary-foreground/70">
+                {stat.label}
+              </p>
             </div>
           ))}
         </div>
@@ -152,9 +156,11 @@ function Home() {
                 <h3 className="mt-5 font-display text-xl font-semibold uppercase tracking-wide text-navy">
                   {division.name}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{division.summary}</p>
-                 <span className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gold">
-                   View division <ArrowRight className="size-3.5" aria-hidden="true" />
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {division.summary}
+                </p>
+                <span className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gold">
+                  View division <ArrowRight className="size-3.5" aria-hidden="true" />
                 </span>
               </Link>
             );
@@ -204,7 +210,10 @@ function Home() {
       <section className="mx-auto max-w-7xl px-4 py-20">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading eyebrow="Insights" title="Latest news & updates" />
-          <Link to="/news" className="text-xs font-semibold uppercase tracking-wide text-gold hover:underline">
+          <Link
+            to="/news"
+            className="text-xs font-semibold uppercase tracking-wide text-gold hover:underline"
+          >
             View all articles
           </Link>
         </div>
@@ -222,7 +231,9 @@ function Home() {
               <h3 className="mt-4 font-display text-lg font-semibold uppercase leading-snug text-navy group-hover:text-gold">
                 {post.title}
               </h3>
-              <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
+              <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                {post.excerpt}
+              </p>
             </Link>
           ))}
         </div>

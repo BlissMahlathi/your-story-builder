@@ -22,10 +22,14 @@ export function SiteHeader() {
       <div className="hidden bg-navy-deep text-primary-foreground/80 md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-xs">
           <p className="tracking-wide">
-            South African delivery partner <span className="mx-2 text-gold">/</span> {COMPANY.tagline}
+            South African delivery partner <span className="mx-2 text-gold">/</span>{" "}
+            {COMPANY.tagline}
           </p>
           <div className="flex items-center gap-6">
-            <a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-gold">
+            <a
+              href={`tel:${COMPANY.phone.replace(/\s/g, "")}`}
+              className="flex items-center gap-2 hover:text-gold"
+            >
               <Phone className="size-3.5" aria-hidden="true" />
               {COMPANY.phone}
             </a>
@@ -41,7 +45,11 @@ export function SiteHeader() {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
           <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
             <span className="flex size-11 shrink-0 items-center justify-center overflow-hidden bg-white ring-1 ring-gold/50">
-              <img src={logo} alt="Shammah Innovation Holdings logo" className="size-full object-contain" />
+              <img
+                src={logo}
+                alt="Shammah Innovation Holdings logo"
+                className="size-full object-contain"
+              />
             </span>
             <span className="leading-tight">
               <span className="block font-display text-base font-semibold uppercase tracking-[0.08em] sm:text-lg">

@@ -19,7 +19,8 @@ export const Route = createFileRoute("/services")({
       { property: "og:title", content: "Services | Shammah Innovation Holdings" },
       {
         property: "og:description",
-        content: "Seven specialist divisions delivering infrastructure, engineering, technology and compliance services.",
+        content:
+          "Seven specialist divisions delivering infrastructure, engineering, technology and compliance services.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -52,7 +53,9 @@ function ServicesPage() {
               onClick={() => setActive(null)}
               className={cn(
                 "px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-colors",
-                active === null ? "bg-navy text-primary-foreground" : "bg-muted text-navy hover:bg-gold-soft",
+                active === null
+                  ? "bg-navy text-primary-foreground"
+                  : "bg-muted text-navy hover:bg-gold-soft",
               )}
             >
               All divisions
@@ -108,12 +111,17 @@ function ServicesPage() {
                           {service.name}
                         </h3>
                         {service.description ? (
-                          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{service.description}</p>
+                          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                            {service.description}
+                          </p>
                         ) : null}
                         <ul className="mt-4 flex-1 space-y-2">
                           {capabilitiesOf(service).map((cap) => (
                             <li key={cap} className="flex gap-2 text-sm text-foreground/80">
-                              <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden="true" />
+                              <CheckCircle2
+                                className="mt-0.5 size-4 shrink-0 text-gold"
+                                aria-hidden="true"
+                              />
                               <span>{cap}</span>
                             </li>
                           ))}
@@ -128,7 +136,9 @@ function ServicesPage() {
                       </div>
                     ))}
                     {list.length === 0 ? (
-                      <p className="text-sm text-muted-foreground">Details for this division are coming soon.</p>
+                      <p className="text-sm text-muted-foreground">
+                        Details for this division are coming soon.
+                      </p>
                     ) : null}
                   </div>
                 </article>
@@ -140,10 +150,7 @@ function ServicesPage() {
 
       <section className="bg-navy py-14 text-primary-foreground">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 md:flex-row md:items-center">
-          <SectionHeading
-            eyebrow="Next step"
-            title="Need a tailored proposal?"
-          />
+          <SectionHeading eyebrow="Next step" title="Need a tailored proposal?" />
           <Link
             to="/quote"
             className="inline-flex items-center gap-2 bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-wide text-navy-deep transition-colors hover:bg-gold-soft"

@@ -16,7 +16,10 @@ export const Route = createFileRoute("/news/")({
           "Company news, project updates and industry insight from the divisions of Shammah Innovation Holdings.",
       },
       { property: "og:title", content: "News & Blog | Shammah Innovation Holdings" },
-      { property: "og:description", content: "Company news, project updates and industry insight." },
+      {
+        property: "og:description",
+        content: "Company news, project updates and industry insight.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -26,7 +29,11 @@ export const Route = createFileRoute("/news/")({
 
 function formatDate(value: string | null) {
   if (!value) return "";
-  return new Date(value).toLocaleDateString("en-ZA", { year: "numeric", month: "long", day: "numeric" });
+  return new Date(value).toLocaleDateString("en-ZA", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 }
 
 function NewsPage() {
@@ -54,21 +61,33 @@ function NewsPage() {
       <section className="bg-background py-14">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-[1fr_300px]">
           <div>
-            {posts.isLoading ? <p className="text-sm text-muted-foreground">Loading articles…</p> : null}
+            {posts.isLoading ? (
+              <p className="text-sm text-muted-foreground">Loading articles…</p>
+            ) : null}
             {!posts.isLoading && shown.length === 0 ? (
               <p className="text-sm text-muted-foreground">No articles match your search yet.</p>
             ) : null}
 
             <div className="grid gap-8 sm:grid-cols-2">
               {shown.map((post) => (
-                <article key={post.id} className="flex flex-col border border-border bg-card shadow-sm">
+                <article
+                  key={post.id}
+                  className="flex flex-col border border-border bg-card shadow-sm"
+                >
                   {post.cover_url ? (
                     <div className="aspect-16/9 overflow-hidden">
-                      <img src={post.cover_url} alt={post.title} loading="lazy" className="size-full object-cover" />
+                      <img
+                        src={post.cover_url}
+                        alt={post.title}
+                        loading="lazy"
+                        className="size-full object-cover"
+                      />
                     </div>
                   ) : null}
                   <div className="flex flex-1 flex-col p-6">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">{post.category}</p>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
+                      {post.category}
+                    </p>
                     <h2 className="mt-2 font-display text-lg font-semibold uppercase leading-snug tracking-wide text-navy">
                       {post.title}
                     </h2>
@@ -76,7 +95,9 @@ function NewsPage() {
                       <CalendarDays className="size-3.5" aria-hidden="true" />
                       {formatDate(post.published_at ?? post.created_at)}
                     </p>
-                    <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                      {post.excerpt}
+                    </p>
                     <Link
                       to="/news/$slug"
                       params={{ slug: post.slug }}
@@ -93,7 +114,10 @@ function NewsPage() {
 
           <aside className="space-y-8">
             <div className="border border-border bg-card p-5">
-              <label htmlFor="search" className="font-display text-sm font-semibold uppercase tracking-wide text-navy">
+              <label
+                htmlFor="search"
+                className="font-display text-sm font-semibold uppercase tracking-wide text-navy"
+              >
                 Search
               </label>
               <div className="mt-3 flex items-center gap-2 border border-input px-3 py-2">
@@ -109,12 +133,17 @@ function NewsPage() {
             </div>
 
             <div className="border border-border bg-card p-5">
-              <h2 className="font-display text-sm font-semibold uppercase tracking-wide text-navy">Categories</h2>
+              <h2 className="font-display text-sm font-semibold uppercase tracking-wide text-navy">
+                Categories
+              </h2>
               <div className="mt-3 flex flex-col items-start gap-2">
                 <button
                   type="button"
                   onClick={() => setCategory(null)}
-                  className={cn("text-sm", category === null ? "font-semibold text-gold" : "text-muted-foreground")}
+                  className={cn(
+                    "text-sm",
+                    category === null ? "font-semibold text-gold" : "text-muted-foreground",
+                  )}
                 >
                   All categories
                 </button>
@@ -123,7 +152,10 @@ function NewsPage() {
                     key={item}
                     type="button"
                     onClick={() => setCategory(item)}
-                    className={cn("text-sm", category === item ? "font-semibold text-gold" : "text-muted-foreground")}
+                    className={cn(
+                      "text-sm",
+                      category === item ? "font-semibold text-gold" : "text-muted-foreground",
+                    )}
                   >
                     {item}
                   </button>
@@ -132,7 +164,9 @@ function NewsPage() {
             </div>
 
             <div className="border border-border bg-card p-5">
-              <h2 className="font-display text-sm font-semibold uppercase tracking-wide text-navy">Recent posts</h2>
+              <h2 className="font-display text-sm font-semibold uppercase tracking-wide text-navy">
+                Recent posts
+              </h2>
               <ul className="mt-3 space-y-3">
                 {all.slice(0, 4).map((post) => (
                   <li key={post.id}>
