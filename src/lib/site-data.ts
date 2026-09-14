@@ -89,6 +89,7 @@ export const servicesQuery = queryOptions({
       .select("id, division_id, slug, name, description, capabilities, sort_order")
       .eq("status", "published")
       .order("sort_order");
+    console.log("Fetched services data:", data);
     if (error) throw error;
     return data ?? [];
   },
@@ -111,13 +112,16 @@ export const postsQuery = queryOptions({
 
 export const galleryQuery = queryOptions({
   queryKey: ["gallery"],
+
   queryFn: async (): Promise<GalleryItem[]> => {
-    // 1. Fetch from database table
+    // 1. Fetch gallery items from database
     const { data: dbData, error: dbError } = await supabase
       .from("gallery_items")
       .select("id, title, description, category, image_url, alt_text, project_date")
       .eq("status", "published")
       .order("sort_order");
+
+    console.log("Database gallery data:", dbData);
 
     if (dbError && dbError.code !== "42P01") {
       console.error("Database gallery error:", dbError);
@@ -125,27 +129,49 @@ export const galleryQuery = queryOptions({
 
     let items: GalleryItem[] = dbData ?? [];
 
-    // 2. Fetch from 'gallary' storage bucket
+    // 2. Fetch images from private Storage bucket
     try {
-      const { data: files, error: filesError } = await supabase.storage.from("gallary").list();
+      const { data: files, error: filesError } = await supabase.storage.from("gallary").list("", {
+        limit: 100,
+      });
+
+      console.log("Storage files:", files);
+      console.log("Storage error:", filesError);
 
       if (!filesError && files) {
-        const storageItems = files
-          .filter((f) => f.name !== ".emptyFolderPlaceholder" && f.id)
-          .map((file) => {
-            const { data } = supabase.storage.from("gallary").getPublicUrl(file.name);
-            return {
-              id: file.id || `storage-${file.name}`,
-              title: file.name.replace(/\.[^/.]+$/, ""), // Remove extension
-              description: "Uploaded via Storage",
-              category: "Gallary Storage",
-              image_url: data.publicUrl,
-              alt_text: file.name,
-              project_date: file.created_at || null,
-            };
-          });
+        const storageItems = await Promise.all(
+          files
+            .filter((file) => file.name !== ".emptyFolderPlaceholder" && file.id)
+            .map(async (file) => {
+              // Create temporary URL for private image
+              const { data, error } = await supabase.storage
+                .from("gallary")
+                .createSignedUrl(file.name, 3600);
 
-        items = [...items, ...storageItems];
+              if (error) {
+                console.error(`Error creating signed URL for ${file.name}:`, error);
+
+                return null;
+              }
+
+              return {
+                id: file.id || `storage-${file.name}`,
+                title: file.name.replace(/\.[^/.]+$/, ""),
+                description: "Uploaded via Storage",
+                category: "Gallery Storage",
+                image_url: data.signedUrl,
+                alt_text: file.name,
+                project_date: file.created_at || null,
+              };
+            }),
+        );
+
+        // Remove files for which signed URLs could not be created
+        const validStorageItems = storageItems.filter((item): item is GalleryItem => item !== null);
+
+        items = [...items, ...validStorageItems];
+
+        console.log("Combined gallery items:", items);
       } else if (filesError) {
         console.error("Storage gallery error:", filesError);
       }
