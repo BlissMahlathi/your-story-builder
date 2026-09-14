@@ -11,6 +11,11 @@ import {
   Truck,
   Briefcase,
   CheckCircle2,
+  HardHat,
+  Wheat,
+  Landmark,
+  Factory,
+  FileCheck,
 } from "lucide-react";
 import { SiteLayout, SectionHeading } from "@/components/site/SiteLayout";
 import { divisionsQuery, postsQuery, COMPANY } from "@/lib/site-data";
@@ -41,7 +46,7 @@ export const DIVISION_ICONS: Record<string, typeof Briefcase> = {
 };
 
 const STATS = [
-  { value: "7", label: "Operating divisions" },
+  { value: "8", label: "Operating divisions" },
   { value: "21+", label: "Service offerings" },
   { value: "10+", label: "Years of delivery" },
   { value: "100%", label: "Compliance focus" },
@@ -52,6 +57,28 @@ const PROMISES = [
   "Qualified professionals and compliant workmanship",
   "Transparent pricing and clear project reporting",
   "Safety, quality and environmental standards upheld",
+];
+
+const INDUSTRIES_STRIP = [
+  { icon: HardHat, label: "Mining", href: "/industries" },
+  { icon: Wheat, label: "Agriculture", href: "/industries" },
+  { icon: Building2, label: "Construction", href: "/industries" },
+  { icon: Landmark, label: "Municipalities", href: "/industries" },
+  { icon: Factory, label: "Industrial", href: "/industries" },
+  { icon: HeartPulse, label: "Healthcare", href: "/industries" },
+];
+
+const PROOF_POINTS = [
+  { stat: "40%", label: "Water saving", sub: "Smart Agri-Tech irrigation" },
+  { stat: "24/7", label: "Pump swap", sub: "Emergency logistics response" },
+  { stat: "8", label: "Divisions", sub: "One accountable partner" },
+  { stat: "100%", label: "Compliance", sub: "COIDA · CIDB · DMRE · OHS" },
+];
+
+const COMPLIANCE_CERTS = [
+  "COIDA", "CIDB", "DMRE", "DOL", "SANS 241", "OHS Act",
+  "Mine Health & Safety Act", "POPIA", "B-BBEE", "JBCC", "GCC", "FIDIC",
+  "SPLUMA", "WULA", "NEMA", "CIPC",
 ];
 
 function Home() {
@@ -194,6 +221,62 @@ function Home() {
             loading="lazy"
             className="clip-angle w-full object-cover shadow-2xl"
           />
+        </div>
+      </section>
+
+      {/* Proof Points */}
+      <section className="bg-navy-deep text-primary-foreground">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-12 lg:grid-cols-4">
+          {PROOF_POINTS.map((pt) => (
+            <div key={pt.label} className="border-l-2 border-gold pl-4">
+              <p className="font-display text-3xl font-bold text-gold md:text-4xl">{pt.stat}</p>
+              <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-primary-foreground">{pt.label}</p>
+              <p className="mt-0.5 text-xs text-primary-foreground/60">{pt.sub}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Industries Strip */}
+      <section className="bg-secondary py-14">
+        <div className="mx-auto max-w-7xl px-4">
+          <SectionHeading center eyebrow="Who we serve" title="Industries we operate in" />
+          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            {INDUSTRIES_STRIP.map((industry) => {
+              const Icon = industry.icon;
+              return (
+                <Link
+                  key={industry.label}
+                  to={industry.href}
+                  className="group flex flex-col items-center gap-3 border border-border bg-card p-6 text-center transition-all hover:border-gold hover:shadow-md"
+                >
+                  <span className="flex size-12 items-center justify-center bg-navy text-gold transition-colors group-hover:bg-gold group-hover:text-navy-deep">
+                    <Icon className="size-6" aria-hidden="true" />
+                  </span>
+                  <span className="text-xs font-semibold uppercase tracking-wide text-navy group-hover:text-gold">{industry.label}</span>
+                </Link>
+              );
+            })}
+          </div>
+          <div className="mt-6 text-center">
+            <Link to="/industries" className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-navy hover:text-gold">
+              View all industries <ArrowRight className="size-3.5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Compliance Badges */}
+      <section className="bg-background py-10">
+        <div className="mx-auto max-w-7xl px-4">
+          <p className="text-center text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+            Compliance frameworks &amp; regulatory standards we work with
+          </p>
+          <div className="mt-5 flex flex-wrap justify-center gap-2">
+            {COMPLIANCE_CERTS.map((cert) => (
+              <span key={cert} className="border border-gold/40 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-navy">{cert}</span>
+            ))}
+          </div>
         </div>
       </section>
 

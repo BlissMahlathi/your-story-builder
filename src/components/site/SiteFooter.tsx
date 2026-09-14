@@ -45,6 +45,21 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link to="/industries" className="hover:text-gold">
+                Industries
+              </Link>
+            </li>
+            <li>
+              <Link to="/insurance" className="hover:text-gold">
+                Insurance &amp; Risk
+              </Link>
+            </li>
+            <li>
+              <Link to="/tender-support" className="hover:text-gold">
+                Tender Support
+              </Link>
+            </li>
+            <li>
               <Link to="/gallery" className="hover:text-gold">
                 Project Gallery
               </Link>
