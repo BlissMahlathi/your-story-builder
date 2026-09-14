@@ -79,18 +79,19 @@ function Home() {
           className="absolute inset-0 size-full object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/85 to-navy-deep/40" />
-        <div className="relative mx-auto max-w-7xl px-4 py-24 md:py-32">
-          <p className="font-display text-xs font-semibold uppercase tracking-[0.35em] text-gold">
-            Multi-disciplinary solutions
-          </p>
-          <h1 className="mt-4 max-w-3xl font-display text-4xl font-bold uppercase leading-[1.05] text-primary-foreground md:text-6xl">
-            Engineering progress across every operation
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/80 md:text-lg">
-            One trusted partner for infrastructure, engineering, technology, agriculture, health,
-            logistics and compliance.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-3">
+        <div className="relative mx-auto grid max-w-7xl items-end gap-12 px-4 py-24 md:py-32 lg:grid-cols-[1fr_280px]">
+          <div>
+            <p className="font-display text-xs font-semibold uppercase tracking-[0.35em] text-gold">
+              Multi-disciplinary solutions
+            </p>
+            <h1 className="mt-4 max-w-3xl font-display text-4xl font-bold uppercase leading-[1.02] text-primary-foreground md:text-6xl">
+              Infrastructure that moves business forward
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/80 md:text-lg">
+              One accountable partner for construction, engineering, technology, agriculture, health, logistics and
+              compliance across South Africa.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
             <Link
               to="/quote"
               className="inline-flex items-center gap-2 bg-gold px-7 py-3.5 text-sm font-semibold uppercase tracking-wide text-navy-deep transition-colors hover:bg-gold-soft"
@@ -103,6 +104,16 @@ function Home() {
             >
               Explore Services
             </Link>
+            </div>
+          </div>
+          <div className="hidden border-l border-gold/60 pl-6 lg:block">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-gold">Built for</p>
+            <p className="mt-3 font-display text-2xl font-semibold uppercase leading-tight text-primary-foreground">
+              Complex operations
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-primary-foreground/65">
+              Practical delivery, clear reporting and standards you can rely on.
+            </p>
           </div>
         </div>
       </section>
@@ -142,8 +153,8 @@ function Home() {
                   {division.name}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{division.summary}</p>
-                <span className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gold">
-                  View services <ArrowRight className="size-3.5" aria-hidden="true" />
+                 <span className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-gold">
+                   View division <ArrowRight className="size-3.5" aria-hidden="true" />
                 </span>
               </Link>
             );

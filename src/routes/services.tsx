@@ -100,14 +100,17 @@ function ServicesPage() {
 
                   <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {list.map((service) => (
-                      <div key={service.id} className="border border-border bg-card p-6 shadow-sm">
-                        <h3 className="font-display text-base font-semibold uppercase tracking-wide text-navy">
+                      <div
+                        key={service.id}
+                        className="group flex flex-col border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-gold hover:shadow-lg"
+                      >
+                        <h3 className="font-display text-base font-semibold uppercase tracking-wide text-navy group-hover:text-gold">
                           {service.name}
                         </h3>
                         {service.description ? (
                           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{service.description}</p>
                         ) : null}
-                        <ul className="mt-4 space-y-2">
+                        <ul className="mt-4 flex-1 space-y-2">
                           {capabilitiesOf(service).map((cap) => (
                             <li key={cap} className="flex gap-2 text-sm text-foreground/80">
                               <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden="true" />
@@ -115,6 +118,13 @@ function ServicesPage() {
                             </li>
                           ))}
                         </ul>
+                        <Link
+                          to="/quote"
+                          className="mt-6 inline-flex items-center justify-center gap-2 border border-navy px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-navy transition-colors hover:bg-gold hover:border-gold"
+                        >
+                          Get a Quote
+                          <ArrowRight className="size-3.5" aria-hidden="true" />
+                        </Link>
                       </div>
                     ))}
                     {list.length === 0 ? (

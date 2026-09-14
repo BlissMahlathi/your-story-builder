@@ -28,12 +28,12 @@ export function PageHero({
   breadcrumb?: string;
 }) {
   return (
-    <section className="clip-angle bg-navy pb-16 pt-14 text-primary-foreground">
+    <section className="page-hero clip-angle bg-navy pb-16 pt-14 text-primary-foreground">
       <div className="mx-auto max-w-7xl px-4">
         {eyebrow ? (
           <p className="font-display text-xs font-semibold uppercase tracking-[0.3em] text-gold">{eyebrow}</p>
         ) : null}
-        <h1 className="mt-3 max-w-3xl font-display text-4xl font-bold uppercase leading-tight tracking-tight md:text-5xl">
+        <h1 className="mt-3 max-w-3xl font-display text-4xl font-bold uppercase leading-[0.98] tracking-tight md:text-6xl">
           {title}
         </h1>
         {description ? (

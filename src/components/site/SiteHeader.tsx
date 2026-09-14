@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, Phone, Mail, X } from "lucide-react";
 import { COMPANY } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/shammah-logo.jpeg";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -20,7 +21,9 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50">
       <div className="hidden bg-navy-deep text-primary-foreground/80 md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-xs">
-          <p className="tracking-wide">{COMPANY.tagline}</p>
+          <p className="tracking-wide">
+            South African delivery partner <span className="mx-2 text-gold">/</span> {COMPANY.tagline}
+          </p>
           <div className="flex items-center gap-6">
             <a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-gold">
               <Phone className="size-3.5" aria-hidden="true" />
@@ -37,14 +40,16 @@ export function SiteHeader() {
       <div className="bg-navy text-primary-foreground shadow-lg">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
           <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-            <span className="flex size-10 items-center justify-center bg-gold font-display text-lg font-bold text-navy-deep">
-              SI
+            <span className="flex size-11 shrink-0 items-center justify-center overflow-hidden bg-white ring-1 ring-gold/50">
+              <img src={logo} alt="Shammah Innovation Holdings logo" className="size-full object-contain" />
             </span>
             <span className="leading-tight">
-              <span className="block font-display text-lg font-semibold uppercase tracking-wide">
-                Shammah Innovation
+              <span className="block font-display text-base font-semibold uppercase tracking-[0.08em] sm:text-lg">
+                Shammah
               </span>
-              <span className="block text-[11px] uppercase tracking-[0.25em] text-gold">Holdings</span>
+              <span className="block text-[10px] uppercase tracking-[0.22em] text-gold sm:text-[11px]">
+                Innovation Holdings
+              </span>
             </span>
           </Link>
 

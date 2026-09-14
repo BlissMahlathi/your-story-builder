@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import { COMPANY } from "@/lib/site-data";
+import logo from "@/assets/shammah-logo.jpeg";
 
 export function SiteFooter() {
   return (
@@ -8,11 +9,14 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-3">
-            <span className="flex size-10 items-center justify-center bg-gold font-display text-lg font-bold text-navy-deep">
-              SI
+            <span className="flex size-11 shrink-0 items-center justify-center overflow-hidden bg-white ring-1 ring-gold/50">
+              <img src={logo} alt="Shammah Innovation Holdings logo" className="size-full object-contain" />
             </span>
-            <span className="font-display text-lg font-semibold uppercase tracking-wide text-primary-foreground">
-              Shammah Innovation
+            <span className="leading-tight">
+              <span className="block font-display text-base font-semibold uppercase tracking-[0.08em] text-primary-foreground">
+                Shammah
+              </span>
+              <span className="block text-[10px] uppercase tracking-[0.2em] text-gold">Innovation Holdings</span>
             </span>
           </div>
           <p className="mt-4 text-sm leading-relaxed">{COMPANY.tagline}</p>
@@ -44,7 +48,6 @@ export function SiteFooter() {
                 WhatsApp Us
               </a>
             </li>
-            <li><Link to="/auth" className="hover:text-gold">Staff Login</Link></li>
           </ul>
         </div>
 
