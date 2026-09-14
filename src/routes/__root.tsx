@@ -11,6 +11,43 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { createPageHead, SEO_IMAGE } from "../lib/seo";
+
+const rootHead = createPageHead({
+  title: "Shammah Innovation Holdings | Integrated Infrastructure & Engineering",
+  description:
+    "Shammah Innovation Holdings is a South African delivery partner for infrastructure, engineering, technology, agriculture, health, logistics and compliance.",
+  path: "/",
+});
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "/#organization",
+      name: "Shammah Innovation Holdings",
+      url: "/",
+      logo: SEO_IMAGE,
+      telephone: "+27 65 592 2639",
+      email: "shammahinnovation@gmail.com",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Johannesburg",
+        addressRegion: "Gauteng",
+        addressCountry: "ZA",
+      },
+      areaServed: { "@type": "Country", name: "South Africa" },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "/#website",
+      name: "Shammah Innovation Holdings",
+      url: "/",
+      publisher: { "@id": "/#organization" },
+    },
+  ],
+};
 
 function NotFoundComponent() {
   return (
@@ -77,29 +114,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Shammah Innovation Holdings | Integrated Infrastructure & Engineering" },
-      {
-        name: "description",
-        content:
-          "Shammah Innovation Holdings is a South African delivery partner for infrastructure, engineering, technology, agriculture, health, logistics and compliance.",
-      },
       { name: "author", content: "Shammah Innovation Holdings" },
-      { property: "og:title", content: "Shammah Innovation Holdings" },
-      {
-        property: "og:description",
-        content:
-          "Integrated infrastructure, engineering and operational services for complex projects.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      ...rootHead.meta,
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      ...rootHead.links,
+      { rel: "icon", href: SEO_IMAGE, type: "image/jpeg" },
+      { rel: "apple-touch-icon", href: SEO_IMAGE },
     ],
   }),
   shellComponent: RootShell,
@@ -113,6 +138,7 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script type="application/ld+json">{JSON.stringify(organizationSchema)}</script>
       </head>
       <body>
         {children}

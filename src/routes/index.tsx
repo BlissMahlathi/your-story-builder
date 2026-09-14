@@ -16,26 +16,16 @@ import { SiteLayout, SectionHeading } from "@/components/site/SiteLayout";
 import { divisionsQuery, postsQuery, COMPANY } from "@/lib/site-data";
 import heroImage from "@/assets/hero-infrastructure.jpg";
 import ctaImage from "@/assets/cta-logistics.jpg";
+import { createPageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Shammah Innovation Holdings | Integrated Infrastructure & Engineering" },
-      {
-        name: "description",
-        content:
-          "Shammah Innovation Holdings delivers construction, engineering, IT, agriculture, occupational health, logistics and compliance services across South Africa.",
-      },
-      { property: "og:title", content: "Shammah Innovation Holdings" },
-      {
-        property: "og:description",
-        content:
-          "One trusted partner for infrastructure, engineering, technology, agriculture, health, logistics and compliance.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    createPageHead({
+      title: "Shammah Innovation Holdings | Integrated Infrastructure & Engineering",
+      description:
+        "Shammah Innovation Holdings delivers construction, engineering, IT, agriculture, occupational health, logistics and compliance services across South Africa.",
+      path: "/",
+    }),
   component: Home,
 });
 
