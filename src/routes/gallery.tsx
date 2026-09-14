@@ -4,25 +4,24 @@ import { useQuery } from "@tanstack/react-query";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { galleryQuery } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
+import { createPageHead } from "@/lib/seo";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { ZoomIn } from "lucide-react";
 
 export const Route = createFileRoute("/gallery")({
-  head: () => ({
-    meta: [
-      { title: "Project Gallery | Shammah Innovation Holdings" },
-      {
-        name: "description",
-        content:
-          "Photographs of completed construction, engineering, logistics, agriculture and workplace health projects delivered by Shammah Innovation Holdings.",
-      },
-      { property: "og:title", content: "Project Gallery | Shammah Innovation Holdings" },
-      {
-        property: "og:description",
-        content: "A visual record of our delivered projects across South Africa.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    createPageHead({
+      title: "Project Gallery | Shammah Innovation Holdings",
+      description:
+        "Photographs of completed construction, engineering, logistics, agriculture and workplace health projects delivered by Shammah Innovation Holdings.",
+      path: "/gallery",
+    }),
   component: GalleryPage,
 });
 
@@ -89,16 +88,39 @@ function GalleryPage() {
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {shown.map((item) => (
-              <figure key={item.id} className="group border border-border bg-card shadow-sm">
-                <div className="aspect-4/3 overflow-hidden">
-                  <img
-                    src={item.image_url}
-                    alt={item.alt_text || item.title}
-                    loading="lazy"
-                    className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <figcaption className="p-5">
+              <figure
+                key={item.id}
+                className="group flex flex-col border border-border bg-card shadow-sm transition-shadow hover:shadow-md"
+              >
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="relative aspect-4/3 w-full overflow-hidden block focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2">
+                      <img
+                        src={item.image_url}
+                        alt={item.alt_text || item.title}
+                        loading="lazy"
+                        className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center bg-navy/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <div className="rounded-full bg-background/90 p-3 shadow-lg backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                          <ZoomIn className="size-6 text-navy" />
+                        </div>
+                      </div>
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-5xl border-none bg-transparent p-0 shadow-none">
+                    <DialogTitle className="sr-only">{item.title}</DialogTitle>
+                    <DialogDescription className="sr-only">{item.description}</DialogDescription>
+                    <div className="relative flex aspect-auto max-h-[85vh] w-full items-center justify-center overflow-hidden rounded-md">
+                      <img
+                        src={item.image_url}
+                        alt={item.alt_text || item.title}
+                        className="max-h-[85vh] w-auto object-contain"
+                      />
+                    </div>
+                  </DialogContent>
+                </Dialog>
+                <figcaption className="flex flex-1 flex-col p-5">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
                     {item.category}
                   </p>

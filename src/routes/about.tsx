@@ -3,26 +3,16 @@ import { Target, Eye, Gem, ArrowRight } from "lucide-react";
 import { SiteLayout, PageHero, SectionHeading } from "@/components/site/SiteLayout";
 import { COMPANY } from "@/lib/site-data";
 import aboutImage from "@/assets/about-team.jpg";
+import { createPageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About Us | Shammah Innovation Holdings" },
-      {
-        name: "description",
-        content:
-          "Shammah Innovation Holdings is a South African multi-disciplinary group delivering infrastructure, engineering, technology, agriculture, health, logistics and compliance services.",
-      },
-      { property: "og:title", content: "About Shammah Innovation Holdings" },
-      {
-        property: "og:description",
-        content:
-          "A registered South African group delivering integrated infrastructure and engineering services.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    createPageHead({
+      title: "About Us | Shammah Innovation Holdings",
+      description:
+        "Shammah Innovation Holdings is a South African multi-disciplinary group delivering infrastructure, engineering, technology, agriculture, health, logistics and compliance services.",
+      path: "/about",
+    }),
   component: About,
 });
 

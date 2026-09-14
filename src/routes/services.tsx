@@ -6,26 +6,16 @@ import { SiteLayout, PageHero, SectionHeading } from "@/components/site/SiteLayo
 import { divisionsQuery, servicesQuery, capabilitiesOf } from "@/lib/site-data";
 import { DIVISION_ICONS } from "@/routes/index";
 import { cn } from "@/lib/utils";
+import { createPageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/services")({
-  head: () => ({
-    meta: [
-      { title: "Our Services | Shammah Innovation Holdings" },
-      {
-        name: "description",
-        content:
-          "Explore seven divisions: IT and design, built environment, integrated engineering, agriculture, medical and occupational health, logistics, and risk and compliance.",
-      },
-      { property: "og:title", content: "Services | Shammah Innovation Holdings" },
-      {
-        property: "og:description",
-        content:
-          "Seven specialist divisions delivering infrastructure, engineering, technology and compliance services.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    createPageHead({
+      title: "Our Services | Shammah Innovation Holdings",
+      description:
+        "Explore seven divisions: IT and design, built environment, integrated engineering, agriculture, medical and occupational health, logistics, and risk and compliance.",
+      path: "/services",
+    }),
   component: ServicesPage,
 });
 

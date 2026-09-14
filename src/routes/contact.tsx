@@ -5,25 +5,16 @@ import { toast } from "sonner";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { COMPANY } from "@/lib/site-data";
 import { supabase } from "@/integrations/supabase/client";
+import { createPageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact Us | Shammah Innovation Holdings" },
-      {
-        name: "description",
-        content:
-          "Get in touch with Shammah Innovation Holdings by phone, email or WhatsApp, or send us a message using the contact form.",
-      },
-      { property: "og:title", content: "Contact Shammah Innovation Holdings" },
-      {
-        property: "og:description",
-        content: "Phone, email, WhatsApp and office details, plus a direct message form.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    createPageHead({
+      title: "Contact Us | Shammah Innovation Holdings",
+      description:
+        "Get in touch with Shammah Innovation Holdings by phone, email or WhatsApp, or send us a message using the contact form.",
+      path: "/contact",
+    }),
   component: ContactPage,
 });
 

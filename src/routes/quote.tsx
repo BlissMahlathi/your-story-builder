@@ -6,25 +6,16 @@ import { toast } from "sonner";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { COMPANY, divisionsQuery, servicesQuery } from "@/lib/site-data";
 import { supabase } from "@/integrations/supabase/client";
+import { createPageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/quote")({
-  head: () => ({
-    meta: [
-      { title: "Get a Quote | Shammah Innovation Holdings" },
-      {
-        name: "description",
-        content:
-          "Request a detailed quotation for construction, engineering, IT, agriculture, occupational health, logistics or compliance services.",
-      },
-      { property: "og:title", content: "Get a Quote | Shammah Innovation Holdings" },
-      {
-        property: "og:description",
-        content: "Send us your requirements and receive a tailored quotation.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    createPageHead({
+      title: "Get a Quote | Shammah Innovation Holdings",
+      description:
+        "Request a detailed quotation for construction, engineering, IT, agriculture, occupational health, logistics or compliance services.",
+      path: "/quote",
+    }),
   component: QuotePage,
 });
 

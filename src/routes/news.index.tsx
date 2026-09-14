@@ -5,25 +5,16 @@ import { Search, CalendarDays, ArrowRight } from "lucide-react";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { postsQuery } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
+import { createPageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/news/")({
-  head: () => ({
-    meta: [
-      { title: "News & Blog | Shammah Innovation Holdings" },
-      {
-        name: "description",
-        content:
-          "Company news, project updates and industry insight from the divisions of Shammah Innovation Holdings.",
-      },
-      { property: "og:title", content: "News & Blog | Shammah Innovation Holdings" },
-      {
-        property: "og:description",
-        content: "Company news, project updates and industry insight.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    createPageHead({
+      title: "News & Blog | Shammah Innovation Holdings",
+      description:
+        "Company news, project updates and industry insight from the divisions of Shammah Innovation Holdings.",
+      path: "/news",
+    }),
   component: NewsPage,
 });
 

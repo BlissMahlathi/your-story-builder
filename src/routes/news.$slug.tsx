@@ -3,21 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, CalendarDays, User } from "lucide-react";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { postsQuery } from "@/lib/site-data";
+import { createPageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/news/$slug")({
-  head: ({ params }) => ({
-    meta: [
-      { title: `Article | Shammah Innovation Holdings` },
-      {
-        name: "description",
-        content: `Read the article "${params.slug.replace(/-/g, " ")}" from Shammah Innovation Holdings.`,
-      },
-      { property: "og:title", content: "Article | Shammah Innovation Holdings" },
-      { property: "og:description", content: "News and insight from Shammah Innovation Holdings." },
-      { property: "og:type", content: "article" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: ({ params }) =>
+    createPageHead({
+      title: "Article | Shammah Innovation Holdings",
+      description: `Read the article "${params.slug.replace(/-/g, " ")}" from Shammah Innovation Holdings.`,
+      path: `/news/${params.slug}`,
+      type: "article",
+    }),
   component: ArticlePage,
 });
 
