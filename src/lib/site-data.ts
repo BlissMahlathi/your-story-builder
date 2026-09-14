@@ -76,6 +76,7 @@ export const companyQuery = queryOptions({
       .select("*")
       .order("sort_order")
       .single();
+    console.log("Using default company data:", COMPANY);
     if (error) throw error;
     const value = data?.value;
     if (value && typeof value === "object" && !Array.isArray(value)) {
