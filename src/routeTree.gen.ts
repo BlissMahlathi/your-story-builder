@@ -19,6 +19,8 @@ import { Route as QuoteRouteImport } from './routes/quote'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminGalleryRouteImport } from './routes/admin/gallery'
+import { Route as AdminNewsRouteImport } from './routes/admin/news'
+import { Route as AdminServicesRouteImport } from './routes/admin/services'
 import { Route as NewsIndexRouteImport } from './routes/news.index'
 import { Route as NewsSlugRouteImport } from './routes/news.$slug'
 
@@ -72,6 +74,16 @@ const AdminGalleryRoute = AdminGalleryRouteImport.update({
   path: '/gallery',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminNewsRoute = AdminNewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminServicesRoute = AdminServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => AdminRoute,
+} as any)
 const NewsIndexRoute = NewsIndexRouteImport.update({
   id: '/news/',
   path: '/news/',
@@ -93,6 +105,8 @@ export interface FileRoutesByFullPath {
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
   '/admin/gallery': typeof AdminGalleryRoute
+  '/admin/news': typeof AdminNewsRoute
+  '/admin/services': typeof AdminServicesRoute
   '/news/$slug': typeof NewsSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/news/': typeof NewsIndexRoute
@@ -106,6 +120,8 @@ export interface FileRoutesByTo {
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
   '/admin/gallery': typeof AdminGalleryRoute
+  '/admin/news': typeof AdminNewsRoute
+  '/admin/services': typeof AdminServicesRoute
   '/news/$slug': typeof NewsSlugRoute
   '/admin': typeof AdminIndexRoute
   '/news': typeof NewsIndexRoute
@@ -121,6 +137,8 @@ export interface FileRoutesById {
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
   '/admin/gallery': typeof AdminGalleryRoute
+  '/admin/news': typeof AdminNewsRoute
+  '/admin/services': typeof AdminServicesRoute
   '/news/$slug': typeof NewsSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/news/': typeof NewsIndexRoute
@@ -137,6 +155,8 @@ export interface FileRouteTypes {
     | '/quote'
     | '/services'
     | '/admin/gallery'
+    | '/admin/news'
+    | '/admin/services'
     | '/news/$slug'
     | '/admin/'
     | '/news/'
@@ -150,6 +170,8 @@ export interface FileRouteTypes {
     | '/quote'
     | '/services'
     | '/admin/gallery'
+    | '/admin/news'
+    | '/admin/services'
     | '/news/$slug'
     | '/admin'
     | '/news'
@@ -164,6 +186,8 @@ export interface FileRouteTypes {
     | '/quote'
     | '/services'
     | '/admin/gallery'
+    | '/admin/news'
+    | '/admin/services'
     | '/news/$slug'
     | '/admin/'
     | '/news/'
@@ -254,6 +278,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminGalleryRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/news': {
+      id: '/admin/news'
+      path: '/news'
+      fullPath: '/admin/news'
+      preLoaderRoute: typeof AdminNewsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/services': {
+      id: '/admin/services'
+      path: '/services'
+      fullPath: '/admin/services'
+      preLoaderRoute: typeof AdminServicesRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/news/': {
       id: '/news/'
       path: '/news'
@@ -273,11 +311,15 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminGalleryRoute: typeof AdminGalleryRoute
+  AdminNewsRoute: typeof AdminNewsRoute
+  AdminServicesRoute: typeof AdminServicesRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminGalleryRoute: AdminGalleryRoute,
+  AdminNewsRoute: AdminNewsRoute,
+  AdminServicesRoute: AdminServicesRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 

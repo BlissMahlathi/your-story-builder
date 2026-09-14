@@ -68,6 +68,24 @@ export function capabilitiesOf(service: Pick<Service, "capabilities">): string[]
   return [];
 }
 
+export const companyQuery = queryOptions({
+  queryKey: ["company"],
+  queryFn: async (): Promise<typeof COMPANY> => {
+    const { data, error } = await supabase
+      .from("site_settings")
+      .select("*")
+      .order("sort_order")
+      .single();
+    if (error) throw error;
+    const value = data?.value;
+    if (value && typeof value === "object" && !Array.isArray(value)) {
+      return { ...COMPANY, ...(value as unknown as Partial<typeof COMPANY>) };
+    }
+    console.log("Using default company data:", COMPANY);
+    return COMPANY;
+  },
+});
+
 export const divisionsQuery = queryOptions({
   queryKey: ["divisions"],
   queryFn: async (): Promise<Division[]> => {
