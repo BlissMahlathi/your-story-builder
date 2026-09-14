@@ -7,10 +7,5 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
- plugins: [react()],
-  server: {
-    allowedHosts: [
-      'fb4ba1f9-5cc6-4e6a-8645-c5714e3e51e5-00-s0tjg6u1kzph.picard.replit.dev'
-    ]
-  }
+ plugins: []
 });
