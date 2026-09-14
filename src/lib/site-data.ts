@@ -54,7 +54,7 @@ export type DocumentItem = {
 export const COMPANY = {
   name: "Shammah Innovation Holdings",
   tagline: "Integrated infrastructure. Engineered progress.",
-  registration: "2013/045792/07",
+  registration: "2026/529633/07",
   phone: "+27 65 592 2639",
   whatsapp: "27655922639",
   email: "shammahinnovation@gmail.com",
