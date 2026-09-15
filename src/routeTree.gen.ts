@@ -18,10 +18,12 @@ import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as InsuranceRouteImport } from './routes/insurance'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as PaiaRouteImport } from './routes/paia'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuoteRouteImport } from './routes/quote'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TenderSupportRouteImport } from './routes/tender-support'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminEnquiriesRouteImport } from './routes/admin/enquiries'
 import { Route as AdminGalleryRouteImport } from './routes/admin/gallery'
@@ -75,6 +77,11 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PaiaRoute = PaiaRouteImport.update({
+  id: '/paia',
+  path: '/paia',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -93,6 +100,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const TenderSupportRoute = TenderSupportRouteImport.update({
   id: '/tender-support',
   path: '/tender-support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -141,10 +153,12 @@ export interface FileRoutesByFullPath {
   '/industries': typeof IndustriesRoute
   '/insurance': typeof InsuranceRoute
   '/login': typeof LoginRoute
+  '/paia': typeof PaiaRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
   '/tender-support': typeof TenderSupportRoute
+  '/terms': typeof TermsRoute
   '/admin/enquiries': typeof AdminEnquiriesRoute
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/news': typeof AdminNewsRoute
@@ -162,10 +176,12 @@ export interface FileRoutesByTo {
   '/industries': typeof IndustriesRoute
   '/insurance': typeof InsuranceRoute
   '/login': typeof LoginRoute
+  '/paia': typeof PaiaRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
   '/tender-support': typeof TenderSupportRoute
+  '/terms': typeof TermsRoute
   '/admin/enquiries': typeof AdminEnquiriesRoute
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/news': typeof AdminNewsRoute
@@ -185,10 +201,12 @@ export interface FileRoutesById {
   '/industries': typeof IndustriesRoute
   '/insurance': typeof InsuranceRoute
   '/login': typeof LoginRoute
+  '/paia': typeof PaiaRoute
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
   '/tender-support': typeof TenderSupportRoute
+  '/terms': typeof TermsRoute
   '/admin/enquiries': typeof AdminEnquiriesRoute
   '/admin/gallery': typeof AdminGalleryRoute
   '/admin/news': typeof AdminNewsRoute
@@ -209,10 +227,12 @@ export interface FileRouteTypes {
     | '/industries'
     | '/insurance'
     | '/login'
+    | '/paia'
     | '/privacy'
     | '/quote'
     | '/services'
     | '/tender-support'
+    | '/terms'
     | '/admin/enquiries'
     | '/admin/gallery'
     | '/admin/news'
@@ -230,10 +250,12 @@ export interface FileRouteTypes {
     | '/industries'
     | '/insurance'
     | '/login'
+    | '/paia'
     | '/privacy'
     | '/quote'
     | '/services'
     | '/tender-support'
+    | '/terms'
     | '/admin/enquiries'
     | '/admin/gallery'
     | '/admin/news'
@@ -252,10 +274,12 @@ export interface FileRouteTypes {
     | '/industries'
     | '/insurance'
     | '/login'
+    | '/paia'
     | '/privacy'
     | '/quote'
     | '/services'
     | '/tender-support'
+    | '/terms'
     | '/admin/enquiries'
     | '/admin/gallery'
     | '/admin/news'
@@ -275,10 +299,12 @@ export interface RootRouteChildren {
   IndustriesRoute: typeof IndustriesRoute
   InsuranceRoute: typeof InsuranceRoute
   LoginRoute: typeof LoginRoute
+  PaiaRoute: typeof PaiaRoute
   PrivacyRoute: typeof PrivacyRoute
   QuoteRoute: typeof QuoteRoute
   ServicesRoute: typeof ServicesRoute
   TenderSupportRoute: typeof TenderSupportRoute
+  TermsRoute: typeof TermsRoute
   NewsSlugRoute: typeof NewsSlugRoute
   NewsIndexRoute: typeof NewsIndexRoute
 }
@@ -348,6 +374,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/paia': {
+      id: '/paia'
+      path: '/paia'
+      fullPath: '/paia'
+      preLoaderRoute: typeof PaiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -374,6 +407,13 @@ declare module '@tanstack/react-router' {
       path: '/tender-support'
       fullPath: '/tender-support'
       preLoaderRoute: typeof TenderSupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/': {
@@ -456,10 +496,12 @@ const rootRouteChildren: RootRouteChildren = {
   IndustriesRoute: IndustriesRoute,
   InsuranceRoute: InsuranceRoute,
   LoginRoute: LoginRoute,
+  PaiaRoute: PaiaRoute,
   PrivacyRoute: PrivacyRoute,
   QuoteRoute: QuoteRoute,
   ServicesRoute: ServicesRoute,
   TenderSupportRoute: TenderSupportRoute,
+  TermsRoute: TermsRoute,
   NewsSlugRoute: NewsSlugRoute,
   NewsIndexRoute: NewsIndexRoute,
 }
