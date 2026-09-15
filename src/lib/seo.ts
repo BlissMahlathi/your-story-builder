@@ -1,6 +1,6 @@
 import logo from "@/assets/shammah-logo.jpeg";
 
-const configuredSiteUrl = import.meta.env.VITE_SITE_URL?.replace(/\/$/, "") ?? "";
+const configuredSiteUrl = (import.meta.env["VITE_SITE_URL"] as string | undefined)?.replace(/\/$/, "") ?? "";
 
 export const SEO_IMAGE = logo;
 
